@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import security.service.IndexService;
 
-@Configuration
+@Configuration //설정파일을 만들기 위한 어노테이션
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -39,7 +39,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .csrf()//서버에게 요청할 수 있는 페이지
             .ignoringAntMatchers("/member/logincontroller")//로그인 처리
-            .ignoringAntMatchers("/member/signupcontroller");//회원가입 처리
+            .ignoringAntMatchers("/member/signupcontroller")//회원가입 처리
+
+            .and()
+            .oauth2Login() //oauth2 관련 설정
+            .userInfoEndpoint()//유저 정보가 들어오는 위치
+            .userService(indexService); //해당 서비스 클래스로 유저 정보 받기
     }
 
     @Autowired

@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class LoginDto implements UserDetails { //
+public class LoginDto implements UserDetails {
     private String mid;
     private String mpassword;
     private Set<GrantedAuthority> authorities; // 인증(UserDetails 필수)
